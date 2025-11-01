@@ -5,9 +5,8 @@ A full implementation of a Go-playing AI that combines a neural network with Mon
 ## Features
 
 - **Complete Go Game Engine**: Full implementation of Go rules including move validation, capture detection, ko rule, and elementary territory scoring
-- **Deep Neural Network AI**: Dual-head Convolutional Neural Network with policy and value networks using residual blocks
+- **Neural Network**: Dual-head Convolutional Neural Network with policy and value networks using residual blocks
 - **Monte Carlo Tree Search (MCTS)**: Tree search algorithm with neural network guidance for gameplay
-- **Self-Play Training**: Automatic data generation through self-play games for continuous improvement
 - **Command-Line Interface**: Play against the trained AI with real-time board visualization
 - **Territory Scoring**: Automatic dead stone removal and territory calculation for accurate game outcomes
 
@@ -125,12 +124,6 @@ Go-Neural-Network/
 - **Simulations**: Configurable number of simulations per move (default: 400-800)
 - **Temperature**: Controls move selection randomness during training vs. deterministic play
 
-### Training Process
-1. **Self-Play Generation**: Current model plays against itself using MCTS
-2. **Data Collection**: Store game positions with MCTS visit probabilities and final game outcomes
-3. **Supervised Learning**: Train network on collected data with policy and value losses
-4. **Iteration**: Repeat process to gradually improve model strength
-
 ## Game Rules Implementation
 
 - **Move Validation**: Complete rule set including ko rule, suicide prevention, and capture detection
@@ -151,31 +144,6 @@ Go-Neural-Network/
   - Quick test: 10 iterations × 10 games = ~30 minutes
   - Good results: 20 iterations × 30 games = ~2-3 hours
   - Strong model: 50 iterations × 50 games = ~8-12 hours
-
-## Example Training Session
-
-```bash
-# Quick test (30 minutes)
-python scripts/train.py --board-size 9 --iterations 10 --games 10
-
-# Better results (2-3 hours)
-python scripts/train.py --board-size 9 --iterations 20 --games 30
-
-# Strong model (8-12 hours)
-python scripts/train.py --board-size 9 --iterations 50 --games 50
-
-# Production (days)
-python scripts/train.py --board-size 19 --iterations 100 --games 100 --device cuda
-```
-
-## Evaluation
-
-After training, evaluate model performance:
-```bash
-python scripts/train.py --iterations 20 --games 20 --eval-games 20
-```
-
-The evaluation plays the model against a random player and reports win rate statistics.
 
 ## License
 
